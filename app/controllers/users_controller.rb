@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 		@sold = current_user.sellers.where.not(buyer: nil)
 		@bought = Shoe.where(buyer: current_user)
 		@buytotal = Shoe.where(buyer: current_user).sum(:amount)
-		@selltotal = Shoe.where(seller: current_user).sum(:amount)
+		@selltotal = current_user.sellers.where.not(buyer: nil).sum(:amount)
 		# @user = User.find(current_user.id)
 	# => @user = User.find(params[:id])
 	end
