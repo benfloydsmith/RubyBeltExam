@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+		padding: 4px;
+	}
+	#sales{
+		border: 2px solid black;
+		margin: 10px;
+		padding: 5px;
+	}
+	#purchases{
+		border: 2px solid black;
+		margin: 10px;
+		padding: 5px;
+	}
+	#top{
+		border: 2px solid black;
+		margin: 10px;
+		padding: 5px;
+	}
+</style>
+	<title>My Account</title>
+</head>
+<body>
+ | <a href="/shoes">Go to All Products</a>
+<h2>Hi <%= current_user.first %></h2>
+	<h3>Sell Product</h3>
+		<form action='/shoes/create' method='post'>
+			<input type="hidden" name="authenticity_token" value='<%= form_authenticity_token %>'>
+			<p>Name: <input type="text" name="shoe[product]"></p>
+			<p>Amount: <input type="text" placeholder="$0.00" name='shoe[amount]'</p>
+			<input type="submit" value="Sell">
+		</form>
+<div id='top'>
+	<p><b>Your products that are not yet sold:</b></p>
+	<table>
+		<tr>
+			<th>Product</th>
+			<th>Date Posted</th>
+			<th>Amount</th>
+			<th>Action</th>
+		</tr>
+		<% @selling.each do |selling| %>
+		<tr>
+			<td><%= selling.product %></td>
+			<td><%= selling.created_at.strftime("%B %d, %Y") %></td>
+			<td>$<%= selling.amount %></td>
+			<td><a href="/shoes/<%= selling.id %>" data-method='delete'>Remove</a></td>
+		</tr>
+		<% end %>
+	</table>
+	</div>
+<div id='sales'>
+	<p><b>Sales</b></p>
+	<table>
+		<tr>
+			<th>Product</th>
+			<th>Date Bought</th>
+			<th>Buyer</th>
+			<th>Amount</th>
+		</tr>
+		<% @sold.each do |sold| %>
+		<tr>
+			<td><%= sold.product %></td>
+			<td><%= sold.updated_at.strftime("%B %d, %Y") %></td>
+			<td><%= sold.buyer.first %> <%= sold.buyer.last %></td>
+			<td><%= sold.amount %></td>
+		</tr>
+		<% end %>
+	</table>
+	<h4>Total: $<%= @selltotal %></h4>
+</div>
+<div id='purchases'>
+	<p><b>Purchases</b></p>
+	<table>
+		<tr>
+			<th>Product</th>
+			<th>Date Bought</th>
+			<th>Seller</th>
+			<th>Amount</th>
+		</tr>
+		<% @bought.each do |buy| %>
+		<tr>
+			<td><%= buy.product %></td>
+			<td><%= buy.updated_at.strftime("%B %d, %Y") %></td>
+			<td><%= buy.seller.first %> <%= buy.seller.last %></td>
+			<td><%= buy.amount %></td>
+		</tr>
+		<% end %>
+	</table>
+	<h4>Total: $<%= @buytotal %></h4>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
