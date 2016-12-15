@@ -71,7 +71,7 @@
 		</tr>
 		<% end %>
 	</table>
-	<h4>Total: $<%= @selltotal %></h4>
+	<h4>Total: $<%= number_to_currency(@selltotal) %></h4>
 </div>
 <div id='purchases'>
 	<p><b>Purchases</b></p>
@@ -91,7 +91,7 @@
 		</tr>
 		<% end %>
 	</table>
-	<h4>Total: $<%= @buytotal %></h4>
+	<h4>Total: $<%= number_to_currency(@buytotal) %></h4>
 </div>
 
 </body>
