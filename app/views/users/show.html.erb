@@ -47,7 +47,7 @@
 		<tr>
 			<td><%= selling.product %></td>
 			<td><%= selling.created_at.strftime("%B %d, %Y") %></td>
-			<td>$<%= selling.amount %></td>
+			<td><%= number_to_currency(selling.amount) %></td>
 			<td><a href="/shoes/<%= selling.id %>" data-method='delete'>Remove</a></td>
 		</tr>
 		<% end %>
@@ -67,7 +67,7 @@
 			<td><%= sold.product %></td>
 			<td><%= sold.updated_at.strftime("%B %d, %Y") %></td>
 			<td><%= sold.buyer.first %> <%= sold.buyer.last %></td>
-			<td><%= sold.amount %></td>
+			<td><%= number_to_currency(sold.amount) %></td>
 		</tr>
 		<% end %>
 	</table>
@@ -87,7 +87,7 @@
 			<td><%= buy.product %></td>
 			<td><%= buy.updated_at.strftime("%B %d, %Y") %></td>
 			<td><%= buy.seller.first %> <%= buy.seller.last %></td>
-			<td><%= buy.amount %></td>
+			<td><%= number_to_currency(buy.amount) %></td>
 		</tr>
 		<% end %>
 	</table>

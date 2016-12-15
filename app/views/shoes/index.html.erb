@@ -28,7 +28,7 @@
 			<td><%= shoe.product %></td>
 			<td><%= shoe.seller.first %> <%= shoe.seller.last %></td>
 			<td><%= shoe.created_at.strftime("%B %d, %Y") %></td>
-			<td><%= shoe.amount %></td>
+			<td><%= number_to_currency(shoe.amount) %></td>
 			<td><a href="/shoes/<%= shoe.id %>" data-method='patch'>Buy</a></td>
 		</tr>
 		<% end %>
